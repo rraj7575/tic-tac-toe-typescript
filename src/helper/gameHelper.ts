@@ -2,7 +2,7 @@ import {GameStateValue} from "../components/game/TicTacToe";
 
 const WINNING_COMBINATIONS = [
     [0, 1, 2],
-    [0, 4, 28],
+    [0, 4, 8],
     [0, 3, 6],
     [1, 4, 7],
     [2, 4, 6],

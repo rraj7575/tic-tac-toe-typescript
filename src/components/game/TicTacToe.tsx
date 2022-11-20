@@ -12,7 +12,7 @@ export type GameStateValue = 'X' | 'O' | null
 
 const initialGameState = Array(9).fill(null)
 
-const playerScores: ScoreType = JSON.parse(sessionStorage.getItem('player_score') || '{}');
+const playerScores: ScoreType = JSON.parse(sessionStorage.getItem('player_score') || '{}') as ScoreType
 
 const TicTacToe = () => {
 
@@ -128,7 +128,7 @@ const TicTacToe = () => {
                 <div className='f-size-25'>
                     <div>Player X score {playerXScore}</div>
                     <div>Player O score {playerOScore}</div>
-                    <div>Player O score {tie}</div>
+                    <div>Tie {tie}</div>
                 </div>
             </div>
         </div>
