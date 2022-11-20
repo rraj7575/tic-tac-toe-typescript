@@ -1,0 +1,42 @@
+
+.b-grey {
+    background-color: grey;
+}
+.game-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.b-right-bottom{
+    border-bottom: 4px solid black;
+    border-right: 4px solid black;
+}
+
+.b-bottom{
+    border-bottom: 4px solid black;
+}
+
+.b-right{
+    border-right: 4px solid black;
+}
+
+.text-center{
+    text-align: center;
+}
+.f-size{
+   font-size: 30px;
+}
+
+.reset-button{
+    color: red;
+    background-color: white;
+    padding: 8px 20px;
+    cursor: pointer;
+}
