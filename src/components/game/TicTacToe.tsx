@@ -118,14 +118,14 @@ const TicTacToe = () => {
                 </div>
             </div>
 
-            <div className='text-center f-size'>
+            <div className='text-center f-size-30'>
                 <br/>
                 {!hasWon && !isDraw && <div>Player turn {player}</div>}
                 {hasWon && <div>Player {playerName} Won !</div>}
                 {isDraw && <div>Match Draw !</div>}
                 {(isDraw || hasWon) && <button className='reset-button' onClick={resetGame}>Reset</button>}
                 <br/>
-                <div>
+                <div className='f-size-25'>
                     <div>Player X score {playerXScore}</div>
                     <div>Player O score {playerOScore}</div>
                     <div>Player O score {tie}</div>
