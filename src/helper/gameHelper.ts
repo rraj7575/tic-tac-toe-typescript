@@ -1,3 +1,4 @@
+import {GameStateValue} from "../components/game/TicTacToe";
 
 const WINNING_COMBINATIONS = [
     [0, 1, 2],
@@ -19,7 +20,7 @@ const checkWinner = (gameState: any) => {
     return [false]
 }
 
-const checkDraw = (gameState: any): boolean => {
+const checkDraw = (gameState: GameStateValue[]): boolean => {
     for (let a of gameState){
         if ( a === null){
             return false

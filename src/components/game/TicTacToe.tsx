@@ -9,21 +9,22 @@ export type GameStateValue = 'X' | 'O' | null
      playerOScore: number,
      tie: number
  }
-const initialState = Array(9).fill(null)
 
+const initialGameState = Array(9).fill(null)
 
-const playerScores: ScoreType = JSON.parse(localStorage.getItem('player_score') || '{}');
+const playerScores: ScoreType = JSON.parse(sessionStorage.getItem('player_score') || '{}');
 
 const TicTacToe = () => {
 
-    const [gameState, setGameState] = useState< GameStateValue[] >(initialState)
+    const [gameState, setGameState] = useState< GameStateValue[] >(initialGameState)
     const [isXTurn, setTurn] = useState< boolean >(true)
+    const [isDraw, setDraw] = useState< boolean >(false)
+
     const [{hasWon, playerName}, setWinner] = useState({
         hasWon: false,
         playerName: ''
     })
 
-    const [isDraw, setDraw] = useState<boolean>(false)
     const [{playerXScore, playerOScore, tie}, setPlayersScore] = useState({
         playerXScore: playerScores.playerXScore || 0,
         playerOScore: playerScores.playerOScore || 0,
@@ -48,7 +49,7 @@ const TicTacToe = () => {
     }, [gameState])
 
     useEffect(() => {
-        localStorage.setItem('player_score', JSON.stringify({
+        sessionStorage.setItem('player_score', JSON.stringify({
             playerXScore,
             playerOScore,
             tie
@@ -78,7 +79,7 @@ const TicTacToe = () => {
     const player = isXTurn ? 'X' : 'O'
 
     const resetGame = () => {
-        setGameState(initialState)
+        setGameState(initialGameState)
         setTurn(true)
         setDraw(false)
         setWinner({
