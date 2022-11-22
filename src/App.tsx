@@ -4,7 +4,7 @@ import './css/global.css'
 
 function App() {
     return (
-        <div className="b-black">
+        <div className="b-black vh-100">
             <TicTacToe/>
         </div>
     );

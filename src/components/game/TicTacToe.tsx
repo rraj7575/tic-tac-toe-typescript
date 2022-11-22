@@ -4,11 +4,16 @@ import {useEffect, useState} from "react";
 import {checkDraw, checkWinner} from "./../../helper/gameHelper";
 
 export type GameStateValue = 'X' | 'O' | null
- type ScoreType = {
-     playerXScore: number,
-     playerOScore: number,
-     tie: number
- }
+type ScoreType = {
+    playerXScore: number,
+    playerOScore: number,
+    tie: number
+}
+
+type WinnerPlayerType = {
+    hasWon: boolean,
+    playerName: 'X' | 'O' | ''
+}
 
 const initialGameState = Array(9).fill(null)
 
@@ -16,9 +21,9 @@ const playerScores: ScoreType = JSON.parse(sessionStorage.getItem('player_score'
 
 const TicTacToe = () => {
 
-    const [gameState, setGameState] = useState< GameStateValue[] >(initialGameState)
-    const [isXTurn, setTurn] = useState< boolean >(true)
-    const [isDraw, setDraw] = useState< boolean >(false)
+    const [gameState, setGameState] = useState<GameStateValue[]>(initialGameState)
+    const [isXTurn, setTurn] = useState<boolean>(true)
+    const [isDraw, setDraw] = useState<boolean>(false)
 
     const [{hasWon, playerName}, setWinner] = useState({
         hasWon: false,
@@ -56,8 +61,8 @@ const TicTacToe = () => {
         }))
     }, [playerXScore, playerOScore, tie])
 
-    const increasePlayerScore = (isDraw: boolean, playerName: GameStateValue ): void => {
-        if (isDraw){
+    const increasePlayerScore = (isDraw: boolean, playerName: GameStateValue): void => {
+        if (isDraw) {
             setPlayersScore(prevState => {
                 return {
                     ...prevState,
@@ -65,7 +70,7 @@ const TicTacToe = () => {
                 }
             })
         } else {
-            if (playerName){
+            if (playerName) {
                 setPlayersScore(prevState => {
                     return {
                         ...prevState,
@@ -128,7 +133,7 @@ const TicTacToe = () => {
                 </div>
                 <br/>
                 <div className='f-size-25 d-flex'>
-                    <div className='d-flex flex-direction-row p-10px'>
+                    <div className='d-flex flex-direction-row p-left-right-15px'>
                         <span>
                             Player (X)
                         </span>
@@ -136,7 +141,7 @@ const TicTacToe = () => {
                             {playerXScore}
                         </span>
                     </div>
-                    <div className='d-flex flex-direction-row p-10px'>
+                    <div className='d-flex flex-direction-row p-left-right-15px'>
                         <span>
                             Tie
                         </span>
@@ -144,7 +149,7 @@ const TicTacToe = () => {
                             {tie}
                         </span>
                     </div>
-                    <div className='d-flex flex-direction-row p-10px'>
+                    <div className='d-flex flex-direction-row p-left-right-15px'>
                         <span>
                             Computer (O)
                         </span>
