@@ -21,11 +21,11 @@ const playerScores: ScoreType = JSON.parse(sessionStorage.getItem('player_score'
 
 const TicTacToe = () => {
 
-    const [gameState, setGameState] = useState<GameStateValue[]>(initialGameState)
+    const [gameState, setGameState] = useState< GameStateValue[]>(initialGameState)
     const [isXTurn, setTurn] = useState<boolean>(true)
     const [isDraw, setDraw] = useState<boolean>(false)
 
-    const [{hasWon, playerName}, setWinner] = useState({
+    const [{hasWon, playerName}, setWinner] = useState<WinnerPlayerType>({
         hasWon: false,
         playerName: ''
     })
