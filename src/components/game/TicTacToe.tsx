@@ -100,7 +100,7 @@ const TicTacToe = () => {
 
     return (
         <div>
-            <div className='game-container'>
+            <div className='game-container p-t-5px'>
                 <div className='row'>
                     <Cell value={gameState[0]} classes='b-right-bottom' onClickCell={() => onClickCell(0)}/>
                     <Cell value={gameState[1]} classes='b-right-bottom' onClickCell={() => onClickCell(1)}/>
@@ -118,17 +118,40 @@ const TicTacToe = () => {
                 </div>
             </div>
 
-            <div className='text-center f-size-30'>
+            <div className='text-center f-size-30 c-white'>
                 <br/>
-                {!hasWon && !isDraw && <div>Player turn {player}</div>}
-                {hasWon && <div>Player {playerName} Won !</div>}
-                {isDraw && <div>Match Draw !</div>}
-                {(isDraw || hasWon) && <button className='reset-button' onClick={resetGame}>Reset</button>}
+                <div>
+                    {!hasWon && !isDraw && <div>Player turn {player}</div>}
+                    {hasWon && <div>Player {playerName} Won !</div>}
+                    {isDraw && <div>Match Draw !</div>}
+                    {(isDraw || hasWon) && <button className='reset-button' onClick={resetGame}>Reset</button>}
+                </div>
                 <br/>
-                <div className='f-size-25'>
-                    <div>Player X score {playerXScore}</div>
-                    <div>Player O score {playerOScore}</div>
-                    <div>Tie {tie}</div>
+                <div className='f-size-25 d-flex'>
+                    <div className='d-flex flex-direction-row p-10px'>
+                        <span>
+                            Player (X)
+                        </span>
+                        <span>
+                            {playerXScore}
+                        </span>
+                    </div>
+                    <div className='d-flex flex-direction-row p-10px'>
+                        <span>
+                            Tie
+                        </span>
+                        <span>
+                            {tie}
+                        </span>
+                    </div>
+                    <div className='d-flex flex-direction-row p-10px'>
+                        <span>
+                            Computer (O)
+                        </span>
+                        <span>
+                            {playerOScore}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

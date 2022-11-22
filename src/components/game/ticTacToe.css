@@ -7,6 +7,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
+}
+.p-t-5px{
+    padding-top: 5px;
+}
+
+.p-10px {
+    padding: 10px;
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-direction-row{
+    flex-direction: row;
+}
+
+.flex-direction-row{
+    flex-direction: column;
 }
 
 .row{
@@ -15,16 +37,16 @@
 }
 
 .b-right-bottom{
-    border-bottom: 4px solid black;
-    border-right: 4px solid black;
+    border-bottom: 4px solid white;
+    border-right: 4px solid white;
 }
 
 .b-bottom{
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid white;
 }
 
 .b-right{
-    border-right: 4px solid black;
+    border-right: 4px solid white;
 }
 
 .text-center{
@@ -42,4 +64,8 @@
     background-color: white;
     padding: 8px 20px;
     cursor: pointer;
+}
+
+.c-white{
+    color: white;
 }
