@@ -1,10 +1,26 @@
-import type { ReactNode } from "react";
+import Cell from "../cell/Cell";
+import type { GameStateValue } from "../types";
 import "./row.css";
 
 type RowProps = {
-  children: ReactNode;
+  rowColums: { index: number; className: string }[];
+  getCellValue: (cellNo: number) => GameStateValue;
+  onClickCell: (index: number) => void;
 };
 
-export function Row({ children }: RowProps) {
-  return <div className="row">{children}</div>;
+export function Row({ rowColums, getCellValue, onClickCell }: RowProps) {
+  return (
+    <div className="row">
+      {rowColums.map((rowDetails) => {
+        const { index, className } = rowDetails;
+        return (
+          <Cell
+            value={getCellValue(index)}
+            classes={className}
+            onClickCell={() => onClickCell(index)}
+          />
+        );
+      })}
+    </div>
+  );
 }

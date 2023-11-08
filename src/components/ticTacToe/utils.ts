@@ -1,4 +1,4 @@
-import type { GameStateValue, PlayerName } from "./types";
+import type { GameStateValue } from "./types";
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],

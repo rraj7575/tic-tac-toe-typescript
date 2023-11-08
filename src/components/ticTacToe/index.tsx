@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Cell from "./cell/Cell";
 import "./index.css";
 import { checkDraw, checkWinner } from "./utils";
 import type {
@@ -10,17 +9,16 @@ import type {
 } from "./types";
 import { Row } from "./row/Row";
 
-const initialGameState = Array(9).fill(null);
+const INITIAL_GAME_STATE: GameStateValue[] = Array(9).fill(null);
 
-const playerScores: ScoreType = JSON.parse(
+const PLAYER_SCORE: ScoreType = JSON.parse(
   sessionStorage.getItem("player_score") || "{}"
 ) as ScoreType;
 
 export function TicTacToe() {
-  const [gameState, setGameState] =
-    useState<GameStateValue[]>(initialGameState);
-  const [isXTurn, setTurn] = useState<boolean>(true);
-  const [isDraw, setDraw] = useState<boolean>(false);
+  const [gameState, setGameState] = useState(INITIAL_GAME_STATE);
+  const [isXTurn, setTurn] = useState(true);
+  const [isDraw, setDraw] = useState(false);
 
   const [{ hasWon, playerName }, setWinner] = useState<WinnerPlayerType>({
     hasWon: false,
@@ -28,9 +26,9 @@ export function TicTacToe() {
   });
 
   const [{ playerXScore, playerOScore, tie }, setPlayersScore] = useState({
-    playerXScore: playerScores.playerXScore || 0,
-    playerOScore: playerScores.playerOScore || 0,
-    tie: playerScores.tie || 0,
+    playerXScore: PLAYER_SCORE.playerXScore || 0,
+    playerOScore: PLAYER_SCORE.playerOScore || 0,
+    tie: PLAYER_SCORE.tie || 0,
   });
 
   useEffect(() => {
@@ -64,6 +62,10 @@ export function TicTacToe() {
     );
   }, [playerXScore, playerOScore, tie]);
 
+  const getCellValue = (cellNo: number) => {
+    return gameState[cellNo];
+  };
+
   const increasePlayerScore = (isDraw: boolean, playerName: GameStateValue) => {
     if (isDraw) {
       setPlayersScore((prevState) => {
@@ -88,7 +90,7 @@ export function TicTacToe() {
   const player = isXTurn ? "X" : "O";
 
   const resetGame = () => {
-    setGameState(initialGameState);
+    setGameState(INITIAL_GAME_STATE);
     setTurn(true);
     setDraw(false);
     setWinner({
@@ -111,58 +113,35 @@ export function TicTacToe() {
   return (
     <div>
       <div className="game-container p-t-5px">
-        <Row>
-          {[
+        <Row
+          rowColums={[
             { index: 0, className: "b-right-bottom" },
             { index: 1, className: "b-right-bottom" },
             { index: 2, className: "b-bottom" },
-          ].map((rowDetails) => {
-            const { index, className } = rowDetails;
-            return (
-              <Cell
-                value={gameState[index]}
-                classes={className}
-                onClickCell={() => onClickCell(index)}
-              />
-            );
-          })}
-        </Row>
+          ]}
+          onClickCell={onClickCell}
+          getCellValue={getCellValue}
+        />
 
-        <Row>
-          {[
+        <Row
+          rowColums={[
             { index: 3, className: "b-right-bottom" },
             { index: 4, className: "b-right-bottom" },
             { index: 5, className: "b-bottom" },
-          ].map((rowDetails) => {
-            const { index, className } = rowDetails;
+          ]}
+          onClickCell={onClickCell}
+          getCellValue={getCellValue}
+        />
 
-            return (
-              <Cell
-                value={gameState[index]}
-                classes={className}
-                onClickCell={() => onClickCell(index)}
-              />
-            );
-          })}
-        </Row>
-
-        <Row>
-          {[
+        <Row
+          rowColums={[
             { index: 6, className: "b-right" },
             { index: 7, className: "b-right" },
             { index: 8, className: "" },
-          ].map((rowDetails) => {
-            const { index, className } = rowDetails;
-
-            return (
-              <Cell
-                value={gameState[index]}
-                classes={className}
-                onClickCell={() => onClickCell(index)}
-              />
-            );
-          })}
-        </Row>
+          ]}
+          onClickCell={onClickCell}
+          getCellValue={getCellValue}
+        />
       </div>
 
       <div className="text-center f-size-30 c-white">
@@ -186,16 +165,19 @@ export function TicTacToe() {
         <div className="f-size-25 d-flex">
           <div className="d-flex flex-direction-row p-left-right-15px">
             <span>Player (X)</span>
+
             <span>{playerXScore}</span>
           </div>
 
           <div className="d-flex flex-direction-row p-left-right-15px">
             <span>Tie</span>
+
             <span>{tie}</span>
           </div>
 
           <div className="d-flex flex-direction-row p-left-right-15px">
             <span>Computer (O)</span>
+
             <span>{playerOScore}</span>
           </div>
         </div>
