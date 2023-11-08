@@ -1,6 +1,6 @@
-export type GameStateValue = "X" | "O" | null;
+export type GameCellValue = "X" | "O" | null;
 
-export type ScoreType = {
+export type PlayerScore = {
   playerXScore: number;
   playerOScore: number;
   tie: number;
@@ -8,7 +8,7 @@ export type ScoreType = {
 
 export type PlayerName = "X" | "O" | "";
 
-export type WinnerPlayerType = {
+export type WinnerPlayer = {
   hasWon: boolean;
   playerName: PlayerName;
 };

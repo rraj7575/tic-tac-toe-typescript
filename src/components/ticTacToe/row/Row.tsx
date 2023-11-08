@@ -1,10 +1,10 @@
 import Cell from "../cell/Cell";
-import type { GameStateValue } from "../types";
+import type { GameCellValue } from "../types";
 import "./row.css";
 
 type RowProps = {
   rowColums: { index: number; className: string }[];
-  getCellValue: (cellNo: number) => GameStateValue;
+  getCellValue: (cellNo: number) => GameCellValue;
   onClickCell: (index: number) => void;
 };
 

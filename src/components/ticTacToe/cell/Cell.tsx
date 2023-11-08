@@ -1,13 +1,13 @@
 import "./cell.css";
-import type { GameStateValue } from "../types";
+import type { GameCellValue } from "../types";
 
-type CellPropType = {
-  value: GameStateValue;
+type CellProps = {
+  value: GameCellValue;
   onClickCell: () => void;
   classes?: string;
 };
 
-const Cell = ({ value, classes, onClickCell }: CellPropType) => {
+const Cell = ({ value, classes, onClickCell }: CellProps) => {
   return (
     <div className={`cell ${classes ? classes : ""}`} onClick={onClickCell}>
       {value}

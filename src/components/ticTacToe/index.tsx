@@ -2,25 +2,25 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import { checkDraw, checkWinner } from "./utils";
 import type {
-  GameStateValue,
+  GameCellValue,
   PlayerName,
-  ScoreType,
-  WinnerPlayerType,
+  PlayerScore,
+  WinnerPlayer,
 } from "./types";
 import { Row } from "./row/Row";
 
-const INITIAL_GAME_STATE: GameStateValue[] = Array(9).fill(null);
+const INITIAL_GAME_STATE: GameCellValue[] = Array(9).fill(null);
 
-const PLAYER_SCORE: ScoreType = JSON.parse(
+const PLAYER_SCORE: PlayerScore = JSON.parse(
   sessionStorage.getItem("player_score") || "{}"
-) as ScoreType;
+) as PlayerScore;
 
 export function TicTacToe() {
   const [gameState, setGameState] = useState(INITIAL_GAME_STATE);
   const [isXTurn, setTurn] = useState(true);
   const [isDraw, setDraw] = useState(false);
 
-  const [{ hasWon, playerName }, setWinner] = useState<WinnerPlayerType>({
+  const [{ hasWon, playerName }, setWinner] = useState<WinnerPlayer>({
     hasWon: false,
     playerName: "",
   });
@@ -66,7 +66,7 @@ export function TicTacToe() {
     return gameState[cellNo];
   };
 
-  const increasePlayerScore = (isDraw: boolean, playerName: GameStateValue) => {
+  const increasePlayerScore = (isDraw: boolean, playerName: GameCellValue) => {
     if (isDraw) {
       setPlayersScore((prevState) => {
         return {
@@ -111,7 +111,7 @@ export function TicTacToe() {
   };
 
   return (
-    <div>
+    <>
       <div className="game-container p-t-5px">
         <Row
           rowColums={[
@@ -182,6 +182,6 @@ export function TicTacToe() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
